@@ -1,0 +1,52 @@
+/* Глобальные стили + reset + a11y */
+
+html, body { margin: 0; padding: 0; background: #2f4a3a; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: Manrope, system-ui, sans-serif;
+  color: #f0e8dc;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; }
+::selection { background: #c4856a; color: #faf7f2; }
+
+/* доступность: focus-visible, screen reader only */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid #c4856a;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* минимальные touch-targets на мобайле */
+@media (max-width: 760px) {
+  a, button, input, select, textarea { min-height: 44px; }
+}
