@@ -108,8 +108,6 @@
     if (!a) return;
     var href = a.getAttribute('href') || '';
     if (href.indexOf('https://t.me/') === 0)        window.trackGoal('tg-click');
-    else if (href.indexOf('https://wa.me/') === 0)  window.trackGoal('wa-click');
-    else if (href.indexOf('mailto:') === 0)         window.trackGoal('email-click');
     else if (href.indexOf('tel:') === 0)            window.trackGoal('tel-click');
     else if (href.indexOf('yandex.ru/maps') > -1)   window.trackGoal('map-click');
   }, { passive: true });
