@@ -1,54 +1,79 @@
 import { useState } from "react";
 import { PAL_B } from "../lib/palette";
-import { Icon } from "../lib/icons";
 import { Section } from "./Section";
 import { CONTENT } from "../data/content";
 
 type Props = { mobile: boolean };
-type Topic = { t: string; d: string };
+type Topic = { t: string; d: string; body: string };
 
 export function Topics({ mobile }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  const renderTopic = (topic: Topic, i: number) => (
-    <a key={i} href="#formats" style={{
-      display: "grid",
-      gridTemplateColumns: mobile ? "28px 1fr auto" : "80px 1fr auto 24px",
-      gap: mobile ? 12 : 32,
-      alignItems: "center",
-      padding: mobile ? "18px 0" : "28px 8px",
-      borderTop: `1px solid ${PAL_B.rule}`,
-      textDecoration: "none",
-      color: PAL_B.ink,
-      transition: "padding-left .2s",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.paddingLeft = mobile ? "0" : "24px";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.paddingLeft = mobile ? "0" : "8px";
-    }}
-    >
-      <div style={{
-        font: `400 ${mobile ? 14 : 18}px/1 ui-monospace,Menlo,monospace`,
-        color: PAL_B.mute, letterSpacing: ".05em",
-      }}>{String(i + 1).padStart(2, "0")}</div>
-      <div style={{
-        font: `400 ${mobile ? 22 : 38}px/1.1 ${PAL_B.serif}`,
-        letterSpacing: "-.02em",
-        textWrap: "balance" as any,
-      }}>{topic.t}</div>
-      {!mobile && (
-        <div style={{
-          font: `400 14px/1.3 ${PAL_B.sans}`,
-          color: PAL_B.mute2, textAlign: "right", maxWidth: 240,
-        }}>{topic.d}</div>
-      )}
-      <div style={{ color: PAL_B.accent, display: "flex" }}>
-        <Icon.arrow s={mobile ? 14 : 18} />
+  const renderTopic = (topic: Topic, i: number) => {
+    const isOpen = openIdx === i;
+    return (
+      <div key={i} style={{ borderTop: `1px solid ${PAL_B.rule}` }}>
+        <button
+          type="button"
+          onClick={() => setOpenIdx(isOpen ? null : i)}
+          aria-expanded={isOpen}
+          style={{
+            width: "100%",
+            background: "transparent",
+            border: 0,
+            textAlign: "left",
+            cursor: "pointer",
+            color: PAL_B.ink,
+            padding: mobile ? "16px 0" : "20px 8px",
+            display: "grid",
+            gridTemplateColumns: mobile ? "32px 1fr 24px" : "60px 1fr auto 32px",
+            gap: mobile ? 12 : 24,
+            alignItems: "center",
+          }}
+        >
+          <span style={{
+            font: `400 ${mobile ? 12 : 14}px/1 ui-monospace,Menlo,monospace`,
+            color: PAL_B.mute,
+            letterSpacing: ".05em",
+          }}>{String(i + 1).padStart(2, "0")}</span>
+          <span style={{
+            font: `400 ${mobile ? 18 : 24}px/1.25 ${PAL_B.serif}`,
+            letterSpacing: "-.015em",
+            textWrap: "balance" as any,
+          }}>{topic.t}</span>
+          {!mobile && (
+            <span style={{
+              font: `400 13px/1.3 ${PAL_B.sans}`,
+              color: PAL_B.mute2,
+              textAlign: "right",
+              maxWidth: 220,
+              fontStyle: "italic",
+            }}>{topic.d}</span>
+          )}
+          <span style={{
+            width: 28, height: 28, borderRadius: "50%",
+            border: `1px solid ${PAL_B.rule2}`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: PAL_B.accent,
+            font: `400 16px/1 ${PAL_B.sans}`,
+            transform: isOpen ? "rotate(45deg)" : "none",
+            transition: "transform .25s",
+          }}>+</span>
+        </button>
+        {isOpen && (
+          <div style={{
+            padding: mobile ? "0 0 24px 44px" : "0 64px 32px 84px",
+            font: `400 ${mobile ? 15 : 17}px/1.65 ${PAL_B.sans}`,
+            color: PAL_B.mute2,
+            maxWidth: 820,
+          }}>
+            {topic.body}
+          </div>
+        )}
       </div>
-    </a>
-  );
+    );
+  };
 
   return (
     <Section
@@ -61,7 +86,7 @@ export function Topics({ mobile }: Props) {
           , с&nbsp;которыми приходят чаще всего
         </>
       }
-      kicker="Если видите здесь своё — нажмите, чтобы перейти к подходящему формату работы. Если не видите — напишите, разберёмся."
+      kicker="Нажмите на запрос, чтобы прочитать подробнее. Если видите здесь своё — напишите мне."
       variant="dark"
       mobile={mobile}
     >
@@ -116,7 +141,7 @@ export function Topics({ mobile }: Props) {
           gap: mobile ? 32 : 32,
         }}>
           <div style={{
-            padding: mobile ? "24px 0" : "32px 32px 32px 0",
+            padding: mobile ? "24px 0 0" : "32px 32px 0 0",
             borderTop: `1px solid ${PAL_B.rule}`,
             paddingTop: mobile ? 24 : 32,
           }}>
@@ -137,7 +162,7 @@ export function Topics({ mobile }: Props) {
             </p>
           </div>
           <div style={{
-            padding: mobile ? "24px 0" : "32px 0 32px 32px",
+            padding: mobile ? "24px 0 0" : "32px 0 0 32px",
             borderTop: `1px solid ${PAL_B.rule}`,
             borderLeft: !mobile ? `1px solid ${PAL_B.rule}` : "none",
             paddingTop: mobile ? 24 : 32,
