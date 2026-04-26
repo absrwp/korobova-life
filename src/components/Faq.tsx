@@ -11,7 +11,7 @@ export function Faq({ mobile }: Props) {
   return (
     <Section
       id="faq"
-      idx="VIII / IX"
+      idx="VII / VIII"
       eyebrow="FAQ"
       title="До первой встречи"
       variant="dark"

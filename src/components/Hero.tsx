@@ -13,8 +13,8 @@ export function Hero({ mobile }: Props) {
     }}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: mobile ? "1fr" : "1.2fr .8fr",
-        gap: mobile ? 40 : 40,
+        gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+        gap: mobile ? 40 : 56,
         alignItems: "end",
       }}>
         <div>
@@ -37,7 +37,7 @@ export function Hero({ mobile }: Props) {
             margin: "32px 0 40px",
             maxWidth: 520,
           }}>
-            Очно в&nbsp;Екатеринбурге и&nbsp;онлайн. Помогаю при тревоге, отношениях и&nbsp;потере смысла. Клинический психолог, гештальт-терапевт.
+            Пространство, где можно лучше понять себя — без оценок, спешки и&nbsp;давления. Клинический психолог, гештальт-терапевт. Очно в&nbsp;Екатеринбурге и&nbsp;онлайн.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <Btn kind="primary" palette={PAL_B} mobile={mobile} icon={<Icon.tg />} href="#discovery">
@@ -58,7 +58,7 @@ export function Hero({ mobile }: Props) {
             loading="eager"
             style={{
               width: "100%",
-              aspectRatio: mobile ? "4/5" : "3/4",
+              aspectRatio: mobile ? "4/5" : "4/5",
               objectFit: "cover",
               objectPosition: "50% 30%",
               display: "block",
@@ -86,18 +86,17 @@ export function Hero({ mobile }: Props) {
       <div style={{
         marginTop: mobile ? 80 : 120,
         display: "grid",
-        gridTemplateColumns: mobile ? "1fr 1fr" : "repeat(4, 1fr)",
+        gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)",
         borderTop: `1px solid ${PAL_B.rule2}`,
       }}>
         {[
           { n: "2 500+", t: "часов практики" },
           { n: "4",      t: "образования" },
-          { n: "15 лет", t: "в профессии" },
-          { n: "EAGT",   t: "член Гильдии" },
+          { n: "5 лет",  t: "в профессии" },
         ].map((s, i) => (
           <div key={i} style={{
             padding: mobile ? "24px 16px" : "32px 24px",
-            borderRight: !mobile && i < 3 ? `1px solid ${PAL_B.rule2}` : "none",
+            borderRight: !mobile && i < 2 ? `1px solid ${PAL_B.rule2}` : "none",
             borderBottom: mobile && i < 2 ? `1px solid ${PAL_B.rule2}` : "none",
           }}>
             <div style={{

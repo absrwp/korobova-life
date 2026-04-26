@@ -9,10 +9,9 @@ export function Formats({ mobile }: Props) {
   return (
     <Section
       id="formats"
-      idx="II / IX"
+      idx="II / VIII"
       eyebrow="Форматы"
       title="Как мы можем работать"
-      kicker="Цены ориентировочные — обсудим под ваш запрос и ритм. Напишите в мессенджеры — предложу подходящий вариант."
       variant="light"
       mobile={mobile}
     >
@@ -61,24 +60,11 @@ export function Formats({ mobile }: Props) {
             </div>
 
             <div style={{
-              display: "flex", justifyContent: "space-between",
-              alignItems: "baseline",
+              display: "flex", justifyContent: "flex-start",
+              alignItems: "center",
               paddingTop: 18, borderTop: `1px solid ${PAL_B.ruleDark}`,
               marginBottom: 22, gap: 12, flexWrap: "wrap",
             }}>
-              <div>
-                <div style={{
-                  font: `400 ${mobile ? 28 : 36}px/1 ${PAL_B.serif}`,
-                  letterSpacing: "-.015em",
-                  color: PAL_B.inkDark,
-                }}>{f.price}</div>
-                {f.priceNote && (
-                  <div style={{
-                    font: `400 12px/1.4 ${PAL_B.sans}`,
-                    color: PAL_B.muteDark, marginTop: 6,
-                  }}>{f.priceNote}</div>
-                )}
-              </div>
               <div style={{
                 font: `500 12px/1 ${PAL_B.sans}`,
                 color: f.scarce ? PAL_B.accent2 : PAL_B.muteDark,

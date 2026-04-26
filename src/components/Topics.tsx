@@ -53,7 +53,7 @@ export function Topics({ mobile }: Props) {
   return (
     <Section
       id="topics"
-      idx="I / IX"
+      idx="I / VIII"
       eyebrow="С чем я работаю"
       title={
         <>
@@ -107,6 +107,58 @@ export function Topics({ mobile }: Props) {
           }}>+</span>
           {expanded ? "Свернуть" : `Ещё ${CONTENT.topicsExtra.length} запроса`}
         </button>
+
+        {/* Δ-17: «Если не нашли свой запрос» + «С чем не работаю» */}
+        <div style={{
+          marginTop: mobile ? 56 : 80,
+          display: "grid",
+          gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+          gap: mobile ? 32 : 32,
+        }}>
+          <div style={{
+            padding: mobile ? "24px 0" : "32px 32px 32px 0",
+            borderTop: `1px solid ${PAL_B.rule}`,
+            paddingTop: mobile ? 24 : 32,
+          }}>
+            <div style={{
+              font: "400 11px/1 ui-monospace,Menlo,monospace",
+              letterSpacing: ".18em",
+              textTransform: "uppercase",
+              color: PAL_B.accent,
+              marginBottom: 14,
+            }}>Не нашли свой запрос?</div>
+            <p style={{
+              font: `400 ${mobile ? 16 : 17}px/1.6 ${PAL_B.sans}`,
+              color: PAL_B.mute2,
+              margin: 0,
+              maxWidth: 560,
+            }}>
+              {CONTENT.topicsAfter.notFound}
+            </p>
+          </div>
+          <div style={{
+            padding: mobile ? "24px 0" : "32px 0 32px 32px",
+            borderTop: `1px solid ${PAL_B.rule}`,
+            borderLeft: !mobile ? `1px solid ${PAL_B.rule}` : "none",
+            paddingTop: mobile ? 24 : 32,
+          }}>
+            <div style={{
+              font: "400 11px/1 ui-monospace,Menlo,monospace",
+              letterSpacing: ".18em",
+              textTransform: "uppercase",
+              color: PAL_B.mute,
+              marginBottom: 14,
+            }}>⚠ С чем я не работаю</div>
+            <p style={{
+              font: `400 ${mobile ? 15 : 16}px/1.6 ${PAL_B.sans}`,
+              color: PAL_B.mute2,
+              margin: 0,
+              maxWidth: 560,
+            }}>
+              {CONTENT.topicsAfter.notWorking}
+            </p>
+          </div>
+        </div>
       </div>
     </Section>
   );

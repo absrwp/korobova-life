@@ -67,7 +67,7 @@ export function Final({ mobile }: Props) {
   return (
     <Section
       id="discovery"
-      idx="IX / IX"
+      idx="VIII / VIII"
       eyebrow="Связь"
       variant="dark"
       mobile={mobile}
@@ -116,11 +116,11 @@ export function Final({ mobile }: Props) {
               color: PAL_B.mute2, margin: 0,
               font: `400 16px/1.55 ${PAL_B.sans}`,
             }}>
-              Если письмо не открылось автоматически — напишите в Telegram{" "}
-              <a href="https://t.me/korobova_e" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
-                @korobova_e
+              Если что-то пошло не так — напишите в Telegram{" "}
+              <a href="https://t.me/elenkorobova" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
+                @elenkorobova
               </a>{" "}
-              или на hello@korobova.life. Отвечу в течение дня.
+              или позвоните. Отвечу в течение дня.
             </p>
           </div>
         ) : (
@@ -305,10 +305,9 @@ export function Final({ mobile }: Props) {
             color: PAL_B.mute, marginBottom: 14,
           }}>или напрямую</div>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.tg />}   href="https://t.me/korobova_e">Telegram · @korobova_e</Btn>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.wa />}   href="https://wa.me/79527442237">WhatsApp</Btn>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.mail />} href="mailto:hello@korobova.life">E-mail</Btn>
+            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.tg />} href="https://t.me/elenkorobova">Telegram · @elenkorobova</Btn>
             <Btn kind="ghost" palette={PAL_B} mobile={mobile} href="tel:+79527442237">📞 +7&nbsp;952&nbsp;744‑22‑37</Btn>
+            <Btn kind="ghost" palette={PAL_B} mobile={mobile} href="#" /* TODO 0.15-A: Max-handle */>Max</Btn>
           </div>
         </div>
       </div>

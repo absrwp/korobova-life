@@ -7,7 +7,6 @@ import { Topics } from "./components/Topics";
 import { Lead } from "./components/Lead";
 import { Formats } from "./components/Formats";
 import { About } from "./components/About";
-import { Reviews } from "./components/Reviews";
 import { Steps } from "./components/Steps";
 import { Timeline } from "./components/Timeline";
 import { Office } from "./components/Office";
@@ -44,7 +43,6 @@ export default function App() {
       <Lead mobile={mobile} />
       <Formats mobile={mobile} />
       <About mobile={mobile} />
-      <Reviews mobile={mobile} />
       <Steps mobile={mobile} />
       <Timeline mobile={mobile} />
       <Office mobile={mobile} />

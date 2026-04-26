@@ -9,7 +9,7 @@ export function About({ mobile }: Props) {
   return (
     <Section
       id="about"
-      idx="III / IX"
+      idx="III / VIII"
       eyebrow="Обо мне"
       variant="light"
       mobile={mobile}
@@ -34,14 +34,6 @@ export function About({ mobile }: Props) {
               filter: "sepia(.12) saturate(.95) contrast(1.03)",
             }}
           />
-          <div style={{
-            marginTop: 20,
-            font: `400 13px/1.55 ${PAL_B.sans}`,
-            color: PAL_B.muteDark,
-          }}>
-            Член Гильдии психологов и&nbsp;психотерапевтов, МГИ, EAGT.
-            Супервизируюсь регулярно — для меня это часть профессиональной гигиены.
-          </div>
         </div>
 
         <div>
@@ -73,7 +65,7 @@ export function About({ mobile }: Props) {
             }}>{p}</p>
           ))}
 
-          <a href="https://t.me/korobova_e" target="_blank" rel="noopener" style={{
+          <a href="https://t.me/elenkorobova" target="_blank" rel="noopener" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             marginTop: 20,
             font: `500 14px/1 ${PAL_B.sans}`,

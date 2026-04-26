@@ -82,8 +82,8 @@ export function Lead({ mobile }: Props) {
                 color: "rgba(245,240,232,.85)",
               }}>
                 Если письмо не открылось — напишите в Telegram{" "}
-                <a href="https://t.me/korobova_e" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
-                  @korobova_e
+                <a href="https://t.me/elenkorobova" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
+                  @elenkorobova
                 </a>
                 , пришлю гайд лично.
               </p>
