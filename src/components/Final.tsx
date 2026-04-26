@@ -3,6 +3,7 @@ import { PAL_B } from "../lib/palette";
 import { Icon } from "../lib/icons";
 import { Btn } from "./Btn";
 import { Section } from "./Section";
+import { notifyTelegram, nowEkbStamp } from "../lib/notifyTelegram";
 
 type Props = { mobile: boolean };
 
@@ -23,18 +24,19 @@ export function Final({ mobile }: Props) {
   const toggleTopic = (t: string) =>
     setTopics((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     window.trackGoal?.("form-submit");
-    const body = encodeURIComponent(
-      `С чем пришли: ${topics.join(", ") || "—"}\n` +
-      `Формат: ${format || "—"}\n` +
-      `Удобное время: ${time || "—"}\n` +
-      `Имя: ${name}\n` +
-      `Связь: ${contact}\n`
-    );
-    const subject = encodeURIComponent("Запись на сессию — заявка с сайта");
-    window.location.href = `mailto:hello@korobova.life?subject=${subject}&body=${body}`;
+    // Уведомление в Telegram (Δ-18). Если env не задан — тихо fallback на success-state.
+    const message =
+      `🟢 *Новая заявка на сессию*\n\n` +
+      `*С чем пришли:* ${topics.join(", ") || "—"}\n` +
+      `*Формат:* ${format || "—"}\n` +
+      `*Удобное время:* ${time || "—"}\n` +
+      `*Имя:* ${name}\n` +
+      `*Связь:* \`${contact}\`\n\n` +
+      `_${nowEkbStamp()}_`;
+    await notifyTelegram(message);
     setSent(true);
   };
 

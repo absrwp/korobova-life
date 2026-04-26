@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { PAL_B } from "../lib/palette";
+import { notifyTelegram, nowEkbStamp } from "../lib/notifyTelegram";
 
 declare global {
   interface Window {
@@ -13,16 +14,17 @@ export function Lead({ mobile }: Props) {
   const [contact, setContact] = useState("");
   const [sent, setSent] = useState(false);
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!contact.trim()) return;
     window.trackGoal?.("lead-magnet-submit");
-    // MVP-fallback: mailto. Прод: webhook → Make → Google Sheets + автоотправка PDF.
-    const subject = encodeURIComponent("Лид-магнит — заявка с сайта");
-    const body = encodeURIComponent(
-      `Контакт для отправки PDF: ${contact}\n\nПожалуйста, пришлите гайд «7 признаков, что собственные опоры заканчиваются».`
-    );
-    window.location.href = `mailto:hello@korobova.life?subject=${subject}&body=${body}`;
+    // Уведомление в Telegram (Δ-5, Δ-18). Если env не задан — тихо fallback на success-state.
+    const message =
+      `📩 *Новая заявка на лид-магнит*\n\n` +
+      `Гайд: «7 признаков, что собственные опоры заканчиваются»\n` +
+      `Контакт: \`${contact}\`\n` +
+      `_${nowEkbStamp()}_`;
+    await notifyTelegram(message);
     setSent(true);
   };
 
