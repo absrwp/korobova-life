@@ -16,7 +16,7 @@ export function Office({ mobile }: Props) {
   return (
     <Section
       id="office"
-      idx="VII / IX"
+      idx="VI / VIII"
       eyebrow="Кабинет"
       title="Место встречи"
       variant="light"
@@ -80,41 +80,26 @@ export function Office({ mobile }: Props) {
         </div>
 
         <div style={{
-          aspectRatio: mobile ? "4/3" : "auto",
-          minHeight: mobile ? "auto" : 360,
-          background: `
-            linear-gradient(rgba(236,228,210,.3), rgba(236,228,210,.3)),
-            repeating-linear-gradient(0deg,  rgba(30,36,32,.09) 0 1px, transparent 1px 48px),
-            repeating-linear-gradient(90deg, rgba(30,36,32,.09) 0 1px, transparent 1px 48px),
-            ${PAL_B.bgCream}
-          `,
+          minHeight: mobile ? 280 : 360,
           position: "relative",
           border: `1px solid ${PAL_B.ruleDark}`,
+          overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", top: "30%", left: 0, right: 0, height: 2,
-            background: "rgba(30,36,32,.15)",
-          }} />
-          <div style={{
-            position: "absolute", left: "55%", top: 0, bottom: 0, width: 2,
-            background: "rgba(30,36,32,.15)",
-          }} />
-          <div style={{
-            position: "absolute",
-            top: "28%", left: "52%",
-            width: 32, height: 32,
-            borderRadius: "50% 50% 50% 0",
-            background: PAL_B.accent,
-            transform: "rotate(-45deg)",
-            boxShadow: "0 6px 20px rgba(217,122,78,.5)",
-          }} />
-          <div style={{
-            position: "absolute", bottom: 16, left: 16,
-            background: PAL_B.bg, color: PAL_B.ink,
-            padding: "10px 14px",
-            font: `500 12px/1 ${PAL_B.sans}`,
-            letterSpacing: ".04em",
-          }}>ул. Малышева, 51 · 705</div>
+          <iframe
+            src={CONTENT.contacts.mapEmbed}
+            title="Карта — улица Антона Валека, 13"
+            width="100%"
+            height="100%"
+            style={{
+              border: 0,
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+            }}
+            allowFullScreen
+            loading="lazy"
+          />
         </div>
       </div>
     </Section>

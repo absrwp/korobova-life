@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PAL_B } from "../lib/palette";
-import { LEGAL_CONTENT, type LegalKey } from "../data/legal";
+import { LEGAL_CONTENT, LEGAL_PDF_URL, type LegalKey } from "../data/legal";
 
 export function LegalModal() {
   const [openId, setOpenId] = useState<LegalKey | null>(null);
@@ -92,6 +92,29 @@ export function LegalModal() {
             color: "#3a3428", margin: "0 0 14px",
           }}>{p}</p>
         ))}
+
+        {openId === "privacy" && LEGAL_PDF_URL && (
+          <a
+            href={LEGAL_PDF_URL}
+            download
+            target="_blank"
+            rel="noopener"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 12,
+              padding: "10px 18px",
+              borderRadius: 999,
+              background: PAL_B.accent,
+              color: PAL_B.accentInk,
+              font: `500 14px/1 ${PAL_B.sans}`,
+              textDecoration: "none",
+            }}
+          >
+            ↓ Скачать PDF
+          </a>
+        )}
       </div>
     </div>
   );

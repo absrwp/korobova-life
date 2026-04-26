@@ -8,7 +8,7 @@ export function Steps({ mobile }: Props) {
   return (
     <Section
       id="steps"
-      idx="V / IX"
+      idx="IV / VIII"
       eyebrow="Процесс"
       title="Как начать работу"
       variant="dark"

@@ -71,7 +71,8 @@ npm run preview  # локальный preview сборки
 3. **Подтверждение текста About** — формулировки «мыслящая» / «не стыжу»
 4. **Реальные отзывы клиентов** (`content.ts → reviews`)
 5. **Yandex.Metrika ID** (`index.html → window.__YM_ID__`)
-6. **Backend для форм** — сейчас MVP-fallback через `mailto:hello@korobova.life`. Прод: webhook → Telegram-бот / Make.
+6. **CHAT_ID Telegram-бота** (`.env.local → VITE_TG_CHAT_ID`) — для уведомлений с форм
+7. **Max-handle** (`src/data/content.ts → contacts.max`) — пока placeholder
 
 ## Ключевые решения
 

@@ -3,6 +3,7 @@ import { PAL_B } from "../lib/palette";
 import { Icon } from "../lib/icons";
 import { Btn } from "./Btn";
 import { Section } from "./Section";
+import { notifyTelegram, nowEkbStamp } from "../lib/notifyTelegram";
 
 type Props = { mobile: boolean };
 
@@ -23,18 +24,19 @@ export function Final({ mobile }: Props) {
   const toggleTopic = (t: string) =>
     setTopics((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     window.trackGoal?.("form-submit");
-    const body = encodeURIComponent(
-      `С чем пришли: ${topics.join(", ") || "—"}\n` +
-      `Формат: ${format || "—"}\n` +
-      `Удобное время: ${time || "—"}\n` +
-      `Имя: ${name}\n` +
-      `Связь: ${contact}\n`
-    );
-    const subject = encodeURIComponent("Запись на сессию — заявка с сайта");
-    window.location.href = `mailto:hello@korobova.life?subject=${subject}&body=${body}`;
+    // Уведомление в Telegram (Δ-18). Если env не задан — тихо fallback на success-state.
+    const message =
+      `🟢 *Новая заявка на сессию*\n\n` +
+      `*С чем пришли:* ${topics.join(", ") || "—"}\n` +
+      `*Формат:* ${format || "—"}\n` +
+      `*Удобное время:* ${time || "—"}\n` +
+      `*Имя:* ${name}\n` +
+      `*Связь:* \`${contact}\`\n\n` +
+      `_${nowEkbStamp()}_`;
+    await notifyTelegram(message);
     setSent(true);
   };
 
@@ -67,7 +69,7 @@ export function Final({ mobile }: Props) {
   return (
     <Section
       id="discovery"
-      idx="IX / IX"
+      idx="VIII / VIII"
       eyebrow="Связь"
       variant="dark"
       mobile={mobile}
@@ -116,11 +118,11 @@ export function Final({ mobile }: Props) {
               color: PAL_B.mute2, margin: 0,
               font: `400 16px/1.55 ${PAL_B.sans}`,
             }}>
-              Если письмо не открылось автоматически — напишите в Telegram{" "}
-              <a href="https://t.me/korobova_e" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
-                @korobova_e
+              Если что-то пошло не так — напишите в Telegram{" "}
+              <a href="https://t.me/elenkorobova" target="_blank" rel="noopener" style={{ color: PAL_B.accent }}>
+                @elenkorobova
               </a>{" "}
-              или на hello@korobova.life. Отвечу в течение дня.
+              или позвоните. Отвечу в течение дня.
             </p>
           </div>
         ) : (
@@ -305,10 +307,9 @@ export function Final({ mobile }: Props) {
             color: PAL_B.mute, marginBottom: 14,
           }}>или напрямую</div>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.tg />}   href="https://t.me/korobova_e">Telegram · @korobova_e</Btn>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.wa />}   href="https://wa.me/79527442237">WhatsApp</Btn>
-            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.mail />} href="mailto:hello@korobova.life">E-mail</Btn>
+            <Btn kind="ghost" palette={PAL_B} mobile={mobile} icon={<Icon.tg />} href="https://t.me/elenkorobova">Telegram · @elenkorobova</Btn>
             <Btn kind="ghost" palette={PAL_B} mobile={mobile} href="tel:+79527442237">📞 +7&nbsp;952&nbsp;744‑22‑37</Btn>
+            <Btn kind="ghost" palette={PAL_B} mobile={mobile} href="#" /* TODO 0.15-A: Max-handle */>Max</Btn>
           </div>
         </div>
       </div>

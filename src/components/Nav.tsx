@@ -9,7 +9,6 @@ const links = [
   { label: "Запросы",      href: "#topics"    },
   { label: "Форматы",      href: "#formats"   },
   { label: "Обо мне",      href: "#about"     },
-  { label: "Отзывы",       href: "#reviews"   },
   { label: "Как работаем", href: "#steps"     },
   { label: "FAQ",          href: "#faq"       },
   { label: "Связь",        href: "#discovery" },
@@ -60,7 +59,7 @@ export function Nav({ mobile }: Props) {
 
         {!mobile && (
           <nav style={{ display: "flex", gap: 28 }}>
-            {links.slice(0, 6).map((l) => (
+            {links.map((l) => (
               <a key={l.href} href={l.href} style={{
                 font: `400 13px/1 ${PAL_B.sans}`,
                 color: PAL_B.mute2, textDecoration: "none",
@@ -71,7 +70,7 @@ export function Nav({ mobile }: Props) {
         )}
 
         {!mobile && (
-          <Btn kind="primary" palette={PAL_B} mobile={mobile} icon={<Icon.tg />} href="https://t.me/korobova_e">Telegram</Btn>
+          <Btn kind="primary" palette={PAL_B} mobile={mobile} icon={<Icon.tg />} href="https://t.me/elenkorobova">Telegram</Btn>
         )}
 
         {mobile && (
@@ -151,7 +150,7 @@ export function Nav({ mobile }: Props) {
             borderTop: `1px solid ${PAL_B.rule}`,
             display: "flex", gap: 10,
           }}>
-            <a href="https://t.me/korobova_e" target="_blank" rel="noopener"
+            <a href="https://t.me/elenkorobova" target="_blank" rel="noopener"
               onClick={() => setOpen(false)}
               style={{
                 flex: 1, textDecoration: "none",

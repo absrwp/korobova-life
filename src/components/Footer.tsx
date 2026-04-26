@@ -22,9 +22,9 @@ export function Footer({ mobile }: Props) {
     {
       t: "Связь",
       l: [
-        { x: "Telegram", href: "https://t.me/korobova_e",    ext: true },
-        { x: "WhatsApp", href: "https://wa.me/79527442237",  ext: true },
-        { x: "E-mail",   href: "mailto:hello@korobova.life", ext: true },
+        { x: "Telegram",   href: "https://t.me/elenkorobova", ext: true },
+        { x: "Телефон",    href: "tel:+79527442237" },
+        { x: "Max",        href: "#" /* TODO 0.15-A: Max-handle */, ext: true },
       ],
     },
     {
